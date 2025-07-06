@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hypecavess/flow.db/main/assets/logo.png" alt="Flow.db Logo" width="400">
+  <img src="https://raw.githubusercontent.com/hypecavess/flowless.db/assets/logo.png" alt="Flow.db Logo" width="400">
 </p>
 
 > A modern, lightweight, and type-safe JSON document database with built-in schema validation, encryption, and caching capabilities.
