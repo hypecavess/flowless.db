@@ -1,4 +1,4 @@
-# Flow.db 📊
+# Flow.db
 
 > A modern, lightweight, and type-safe JSON document database with built-in schema validation, encryption, and caching capabilities.
 
