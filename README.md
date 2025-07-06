@@ -125,9 +125,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- 📚 [Documentation](https://github.com/hypecavess/flow.db/wiki)
-- 🐛 [Issue Tracker](https://github.com/hypecavess/flow.db/issues)
-- 💬 [Discussions](https://github.com/hypecavess/flow.db/discussions)
+- 📚 [Documentation](https://github.com/hypecavess/flowless.db/wiki)
+- 🐛 [Issue Tracker](https://github.com/hypecavess/flowless.db/issues)
+- 💬 [Discussions](https://github.com/hypecavess/flowless.db/discussions)
 
 ## Acknowledgments
 
