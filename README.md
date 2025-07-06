@@ -1,8 +1,10 @@
-# Flow.db
+<p align="center">
+  <img src="assets/logo.png" alt="Flow.db Logo" width="400">
+</p>
 
 > A modern, lightweight, and type-safe JSON document database with built-in schema validation, encryption, and caching capabilities.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3.3-blue)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20.x-green)](https://nodejs.org/)
 [![Test Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://github.com/HypeCaves/flow.db)
