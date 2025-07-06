@@ -1,7 +1,7 @@
 {
   "name": "flow.db",
   "version": "1.0.0",
-  "description": "JSON Based, easy to use and powerful database system",
+  "description": "A modern, lightweight, and type-safe JSON document database with built-in schema validation, encryption, and caching capabilities.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -18,7 +18,7 @@
     "cache",
     "typescript"
   ],
-  "author": "",
+  "author": "HypeCaves",
   "license": "MIT",
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",

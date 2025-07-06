@@ -2,7 +2,11 @@ import { DatabaseOptions } from '../types';
 import { get } from './get';
 import { set } from './set';
 
-export function push(key: string, value: any, options: DatabaseOptions, cache: Map<string, any>): void {
+interface ArrayItem {
+  [key: string]: any;
+}
+
+export function push(key: string, value: ArrayItem, options: DatabaseOptions, cache: Map<string, any>): void {
   const data = get(key, options, cache) || [];
   
   if (!Array.isArray(data)) {
@@ -13,7 +17,7 @@ export function push(key: string, value: any, options: DatabaseOptions, cache: M
   set(key, data, options, cache);
 }
 
-export function pull(key: string, predicate: (item: any) => boolean, options: DatabaseOptions, cache: Map<string, any>): void {
+export function pull(key: string, predicate: (item: ArrayItem) => boolean, options: DatabaseOptions, cache: Map<string, any>): void {
   const data = get(key, options, cache) || [];
   
   if (!Array.isArray(data)) {
@@ -24,7 +28,13 @@ export function pull(key: string, predicate: (item: any) => boolean, options: Da
   set(key, filteredData, options, cache);
 }
 
-export function update(key: string, predicate: (item: any) => boolean, updateFn: (item: any) => any, options: DatabaseOptions, cache: Map<string, any>): void {
+export function update(
+  key: string,
+  predicate: (item: ArrayItem) => boolean,
+  updateFn: (item: ArrayItem) => ArrayItem,
+  options: DatabaseOptions,
+  cache: Map<string, any>
+): void {
   const data = get(key, options, cache) || [];
   
   if (!Array.isArray(data)) {
@@ -43,4 +53,8 @@ export function find(collection: string, predicate: (item: any) => boolean, opti
   }
 
   return data.filter(predicate);
+}
+
+export function generateId(): string {
+  return Math.random().toString(36).substring(2) + Date.now().toString(36);
 } 

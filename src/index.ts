@@ -4,7 +4,7 @@ import { set } from './operations/set';
 import { get } from './operations/get';
 import { remove } from './operations/delete';
 import { find } from './operations/find';
-import { push } from './operations/array';
+import { push, pull, update } from './operations/array';
 import { validateSchema } from './utils/schema';
 
 class Database implements FlowDB {
@@ -43,9 +43,18 @@ class Database implements FlowDB {
     push(key, value, this.options, this.cache);
   }
 
+  public pull(key: string, predicate: (item: any) => boolean): void {
+    pull(key, predicate, this.options, this.cache);
+  }
+
+  public update(key: string, predicate: (item: any) => boolean, updateFn: (item: any) => any): void {
+    update(key, predicate, updateFn, this.options, this.cache);
+  }
+
   public validateSchema(data: any, schema: Schema): boolean {
     return validateSchema(data, schema);
   }
 }
 
-export = new Database(); 
+const defaultInstance = new Database();
+export = Object.assign(defaultInstance, { Database }); 
