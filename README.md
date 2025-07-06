@@ -1,57 +1,95 @@
 # Flow.db
 
-A modern, lightweight, and type-safe JSON document database designed for Node.js applications. Flow.db provides a seamless developer experience with TypeScript support, built-in schema validation, and robust data management capabilities.
+<div align="center">
 
-## Features
+![Flow.db Logo](assets/logo.png)
 
-- **Type-Safe Operations**: Full TypeScript support with type inference
-- **Schema Validation**: JSON Schema-based data validation
-- **Encryption**: Built-in data encryption support
-- **Memory Caching**: Efficient in-memory caching system
-- **Array Operations**: Rich set of array manipulation methods
-- **Atomic Operations**: Safe concurrent data access
-- **Flexible Storage**: JSON-based file system storage
-- **Metadata Management**: Automatic tracking of collections and data structure
+[![npm version](https://img.shields.io/npm/v/flow.db.svg?style=flat-square)](https://www.npmjs.com/package/flow.db)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-## Installation
+A modern, lightweight, and type-safe JSON document database for Node.js applications.
+
+[Getting Started](#getting-started) •
+[Features](#features) •
+[Documentation](#documentation) •
+[Examples](#examples) •
+[Contributing](#contributing)
+
+</div>
+
+---
+
+## 🚀 Getting Started
+
+### Installation
 
 ```bash
 npm install flow.db
+# or
+yarn add flow.db
+# or
+pnpm add flow.db
 ```
 
-## Quick Start
+### Quick Start
 
 ```typescript
 import Database from 'flow.db';
 
-// Initialize with default configuration
+// Initialize database
 const db = new Database();
 
-// Store data with type safety
+// Store typed data
 interface User {
   id: number;
   name: string;
   email: string;
 }
 
+// Create
 db.set<User>('user', {
   id: 1,
   name: 'John Doe',
   email: 'john@example.com'
 });
 
-// Read data
+// Read
 const user = db.get<User>('user');
 
-// Array operations
+// Update
 db.push('users', { id: 2, name: 'Jane Doe', email: 'jane@example.com' });
-const users = db.get<User[]>('users');
 
-// Find data
-const filteredUsers = db.find('users', user => user.id > 1);
+// Query
+const activeUsers = db.find('users', user => user.id > 0);
 ```
 
-## Configuration
+## ✨ Features
+
+### Type-Safe Operations
+- Full TypeScript support with type inference
+- Compile-time type checking
+- IntelliSense support in VSCode
+
+### Data Integrity
+- **Schema Validation**: JSON Schema-based validation
+- **Atomic Operations**: Safe concurrent access
+- **Data Encryption**: Built-in encryption support
+
+### Performance
+- **Memory Caching**: Efficient in-memory caching
+- **Optimized I/O**: Minimal disk operations
+- **Lightweight**: Zero external dependencies
+
+### Developer Experience
+- **Simple API**: Intuitive method names
+- **Flexible**: Works with any JSON data
+- **Well Documented**: Comprehensive API docs
+
+## 📖 Documentation
+
+### Configuration
 
 ```typescript
 const db = new Database({
@@ -59,11 +97,11 @@ const db = new Database({
   encryption: true,        // Enable encryption
   encryptionKey: 'key',   // Encryption key
   autoBackup: true,       // Enable backups
-  schemaValidation: true  // Enable schema validation
+  schemaValidation: true  // Enable validation
 });
 ```
 
-## Schema Validation
+### Schema Validation
 
 ```typescript
 const userSchema = {
@@ -76,14 +114,46 @@ const userSchema = {
   required: ['id', 'name', 'email']
 };
 
-// Validate data against schema
 const isValid = db.validateSchema(userData, userSchema);
 ```
 
-## Contributing
+### Array Operations
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+```typescript
+// Add to array
+db.push('users', newUser);
 
-## License
+// Remove from array
+db.pull('users', user => user.id === 1);
 
-MIT 
+// Update in array
+db.update('users', 
+  user => user.id === 1,
+  user => ({ ...user, status: 'active' })
+);
+```
+
+## 🎯 Examples
+
+Check out our [examples directory](examples/) for more detailed usage examples:
+
+- [Basic CRUD Operations](examples/basic-crud.ts)
+- [Schema Validation](examples/schema-validation.ts)
+- [Array Operations](examples/array-operations.ts)
+- [Encryption](examples/encryption.ts)
+
+## 🤝 Contributing
+
+We love your input! We want to make contributing to Flow.db as easy and transparent as possible. Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## 📝 License
+
+Flow.db is [MIT licensed](LICENSE).
+
+---
+
+<div align="center">
+
+Made with ❤️ by the Hypecaves and Flowless Team
+
+</div> 
