@@ -6,15 +6,12 @@ export function remove(key: string, options: DatabaseOptions, cache: Map<string,
   const dbPath = path.resolve(process.cwd(), options.path);
   const filePath = path.join(dbPath, `${key}.json`);
 
-  // Remove from cache
   cache.delete(key);
 
-  // Remove file if exists
   if (fs.existsSync(filePath)) {
     fs.unlinkSync(filePath);
   }
 
-  // Update metadata
   const metaPath = path.join(dbPath, 'meta.json');
   const meta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
   meta.collections = meta.collections.filter((collection: string) => collection !== key);

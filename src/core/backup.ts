@@ -8,10 +8,8 @@ export function createBackup(options: DatabaseOptions): void {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const backupDir = path.join(backupPath, timestamp);
 
-  // Create backup directory
   fs.mkdirSync(backupDir, { recursive: true });
 
-  // Copy all data files
   const files = fs.readdirSync(dbPath).filter(file => 
     file.endsWith('.json') && file !== 'meta.json'
   );
@@ -22,13 +20,11 @@ export function createBackup(options: DatabaseOptions): void {
     fs.copyFileSync(sourcePath, destPath);
   }
 
-  // Update metadata
   const metaPath = path.join(dbPath, 'meta.json');
   const meta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'));
   meta.lastBackup = timestamp;
   fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
 
-  // Clean old backups (keep last 5)
   const backups = fs.readdirSync(backupPath)
     .filter(dir => fs.statSync(path.join(backupPath, dir)).isDirectory())
     .sort((a, b) => b.localeCompare(a));
@@ -42,6 +38,6 @@ export function createBackup(options: DatabaseOptions): void {
 }
 
 export function startBackupScheduler(options: DatabaseOptions): NodeJS.Timer {
-  const interval = options.backupInterval || 3600; // Default: 1 hour
+  const interval = options.backupInterval || 3600;
   return setInterval(() => createBackup(options), interval * 1000);
 } 

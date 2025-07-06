@@ -13,7 +13,9 @@ export interface FlowDB {
   delete(key: string): void;
   find(collection: string, predicate: (item: any) => boolean): any[];
   push(key: string, value: any): void;
-  validateSchema(data: any, schema: object): boolean;
+  pull(key: string, predicate: (item: any) => boolean): void;
+  update(key: string, predicate: (item: any) => boolean, updateFn: (item: any) => any): void;
+  validateSchema(data: any, schema: Schema): boolean;
 }
 
 export interface Schema {

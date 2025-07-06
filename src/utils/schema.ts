@@ -1,13 +1,11 @@
 import { Schema } from '../types';
 
 export function validateSchema(data: any, schema: Schema): boolean {
-  // Check type
   if (schema.type === 'object') {
     if (typeof data !== 'object' || Array.isArray(data) || data === null) {
       return false;
     }
 
-    // Check required properties
     if (schema.required) {
       for (const prop of schema.required) {
         if (!(prop in data)) {
@@ -16,7 +14,6 @@ export function validateSchema(data: any, schema: Schema): boolean {
       }
     }
 
-    // Validate properties
     if (schema.properties) {
       for (const [key, propSchema] of Object.entries(schema.properties)) {
         if (key in data && !validateSchema(data[key], propSchema)) {
@@ -33,7 +30,6 @@ export function validateSchema(data: any, schema: Schema): boolean {
       return false;
     }
 
-    // Validate array items
     if (schema.items) {
       for (const item of data) {
         if (!validateSchema(item, schema.items)) {
